@@ -1,6 +1,7 @@
 import { INotificationOptions } from "./INotificationOptions";
 import { NotificationType } from "./NotificationType";
 import Notification from "./Notification";
+import Terminal from "./Terminal"
 
 /**
  * A NotificationController deals with creating any and all notifications.
@@ -9,6 +10,7 @@ import Notification from "./Notification";
 export class NotificationController {
     private readonly _$container: JQuery;
     private readonly _$dismissAllButton: JQuery;
+    private readonly _terminal: Terminal;
     private readonly _notifications: { [id: number]: Notification };
 
     /**
@@ -19,12 +21,12 @@ export class NotificationController {
         this._$container = $(container).addClass("masternotifications-controller-container");
         this._notifications = {};
 
-        this._$container.on(Notification.NotificationRemovedEvent, ".masternotifications-container", (event: JQueryEventObject) => {
+        this._$container.on(Notification.NotificationRemovedEvent, ".masternotifications-notification", (event: JQueryEventObject) => {
             delete this._notifications[$(event.currentTarget).data("id")];
             this.checkForMultipleNotifications();
         })
         
-        this._$dismissAllButton = $(`<div class="masternotifications-dismissall-button masternotifications-container">Dismiss All</div>`)
+        this._$dismissAllButton = $(`<div class="masternotifications-controller-dismissall-button masternotifications-notification">Dismiss All</div>`)
             .hide()
             .on("click", (event: JQueryEventObject) => {
                 for (const id in this._notifications) {
@@ -32,6 +34,19 @@ export class NotificationController {
                 }
             });
         this._$container.append(this._$dismissAllButton);
+
+        const $terminal: JQuery = $(`<div></div>`);
+        this._$container.append($terminal);
+        this._terminal = new Terminal($terminal);
+
+        $(window).on("keydown", (event: JQueryKeyEventObject) => {
+            switch(event.keyCode) {
+                case KeyCode.Escape:
+                    this._terminal.toggle();
+                    break;
+                default:
+            }
+        });
     }
 
     /**
@@ -81,6 +96,9 @@ export class NotificationController {
         this._$container.prepend(notification.$container);
         this._notifications[notification.id] = notification;
         notification.start();
+
+        this._terminal.addNotification(notification);
+
         this.checkForMultipleNotifications();
     }
 
@@ -112,4 +130,8 @@ class Defaults {
         showTime: 0,
         showCloseButton: true
     };
+}
+
+class KeyCode {
+    public static readonly Escape: number = 27;
 }

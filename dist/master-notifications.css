@@ -1,13 +1,20 @@
+.masternotifications-terminal-container {
+    z-index: 5001;
+}
+
+.masternotifications-controller-container {
+    z-index: 5000;
+}
+
 .masternotifications-controller-container {
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 5000;
     height: auto;
     width: 100%;
 }
 
-.masternotifications-container {
+.masternotifications-notification, .masternotifications-terminal-notification {
     position: relative;
     cursor: pointer;
     color: white;
@@ -21,11 +28,11 @@
     line-height: normal;
 }
 
-.masternotifications-container:hover {
+.masternotifications-notification:hover {
     opacity: 1;
 }
 
-.masternotifications-progressbar {
+.masternotifications-notification-progressbar {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -36,7 +43,7 @@
     opacity: 0.3
 }
 
-.masternotifications-close-button {
+.masternotifications-notification-close-button {
     position: absolute;
     right: 0px;
     top: 0px;
@@ -44,14 +51,14 @@
     opacity: 0.3;
 }
 
-.masternotifications-dismissall-button {
+.masternotifications-controller-dismissall-button {
     margin-left: auto;
     margin-right: auto;
     width: 100px;
     font-size: 16px;
 }
 
-.masternotifications-close-button:hover {
+.masternotifications-notification-close-button:hover {
     opacity: 1;
 }
 
@@ -98,4 +105,104 @@
 @keyframes masternotifications-decreaseFontSize {
     0% { font-size: 24px; padding: 10px 20px; }
     100% { font-size: 0px; padding: 0px 0px; }
+}
+
+.masternotifications-terminal-container {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.masternotifications-terminal {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 20px;
+}
+
+.masternotifications-terminal-filters {
+    display: flex;
+    width: 100%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.masternotifications-terminal-filter {
+    cursor: pointer;
+    margin: 5px;
+    flex-grow: 1;
+}
+
+.masternotifications-terminal-filter-success {
+    background-color: rgba(76, 175, 80, 1);
+}
+
+.masternotifications-terminal-filter-info {
+    background-color: rgba(41, 128, 185, 1);
+}
+
+.masternotifications-terminal-filter-warning {
+    background-color: rgba(243, 156, 18, 1);
+}
+
+.masternotifications-terminal-filter-error {
+    background-color: rgba(192, 57, 43, 1);
+}
+
+.masternotifications-terminal-filter-notselected {
+    background-color: initial;
+}
+
+.masternotifications-terminal-filter-success:hover {
+    background-color: rgba(76, 175, 80, 0.8);
+}
+
+.masternotifications-terminal-filter-info:hover {
+    background-color: rgba(41, 128, 185, 0.8);
+}
+
+.masternotifications-terminal-filter-warning:hover {
+    background-color: rgba(243, 156, 18, 0.8);
+}
+
+.masternotifications-terminal-filter-error:hover {
+    background-color: rgba(192, 57, 43, 0.8);
+}
+
+.masternotifications-terminal-filter-success.masternotifications-terminal-filter-notselected:hover {
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+.masternotifications-terminal-filter-info.masternotifications-terminal-filter-notselected:hover {
+    background-color: rgba(41, 128, 185, 0.3);
+}
+
+.masternotifications-terminal-filter-warning.masternotifications-terminal-filter-notselected:hover {
+    background-color: rgba(243, 156, 18, 0.3);
+}
+
+.masternotifications-terminal-filter-error.masternotifications-terminal-filter-notselected:hover {
+    background-color: rgba(192, 57, 43, 0.3);
+}
+
+.masternotifications-terminal-messages {
+    overflow: auto;
+}
+
+.masternotifications-terminal-notification {
+    margin: 8px 0;
+    cursor: default;
+    opacity: 1;
 }
