@@ -1,5 +1,7 @@
 var webpack = require("webpack");
-module.exports = {  
+
+module.exports = {
+  externals: ["jquery", "moment"],
   entry: "./src/ts/NotificationController.ts",
   output: {
     filename: "dist/master-notifications.js",
@@ -11,7 +13,7 @@ module.exports = {
     extensions: ["", ".ts"]
   },
   plugins: [
-      new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [

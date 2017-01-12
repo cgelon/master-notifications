@@ -201,8 +201,20 @@
     overflow: auto;
 }
 
+.masternotifications-terminal-notification-container {
+    display: flex;
+    align-items: center;
+}
+
+.masternotifications-terminal-notification-timestamp {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
 .masternotifications-terminal-notification {
     margin: 8px 0;
     cursor: default;
+    flex-grow: 1;
     opacity: 1;
 }
