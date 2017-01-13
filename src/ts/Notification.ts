@@ -11,6 +11,8 @@ export default class Notification {
 
     private readonly _id: number;
     private readonly _$container: JQuery;
+    private readonly _message: string;
+    private readonly _type: NotificationType;
     private readonly _options: INotificationOptions;
 
     /**
@@ -21,13 +23,15 @@ export default class Notification {
      */
     constructor(message: string, type: NotificationType, options: INotificationOptions) {
         this._id = Math.floor(Math.random() * 10000000000000001)
+        this._message = message;
+        this._type = type;
         this._options = options;
 
-        this._$container = $(`<div class="masternotifications-container masternotifications-${type}" data-id="${this._id}"></div>`).hide();
+        this._$container = $(`<div class="masternotifications-notification masternotifications-${type}" data-id="${this._id}"></div>`).hide();
 
         if (options.showCloseButton) {
-            this._$container.append(`<div class="masternotifications-close-button">&#10006;</div>`);
-            this._$container.on("click.removeNotification", ".masternotifications-close-button", (event: JQueryEventObject) => {
+            this._$container.append(`<div class="masternotifications-notification-close-button">&#10006;</div>`);
+            this._$container.on("click.removeNotification", ".masternotifications-notification-close-button", (event: JQueryEventObject) => {
                 this.remove();
             });
         } else {
@@ -36,9 +40,9 @@ export default class Notification {
             });
         }
 
-        this._$container.append(`<div class="masternotifications-message-container">${message}</div>`);
+        this._$container.append(`<div class="masternotifications-notification-message">${message}</div>`);
         if (options.showTime > 0) {
-            this._$container.append(`<div class="masternotifications-progressbar"></div>`);
+            this._$container.append(`<div class="masternotifications-notification-progressbar"></div>`);
         }
 
         this.$container.on("animationend", (event: JQueryEventObject) => {
@@ -74,6 +78,16 @@ export default class Notification {
         return this._id;
     }
 
+    /** The message displayed in this notification. */
+    public get message(): string {
+        return this._message;
+    }
+
+    /** The type of this notification. */
+    public get type(): NotificationType {
+        return this._type;
+    }
+
     /** The height of the notification in em. */
     private get containerHeightInEm(): string {
         const height: number = this.$container.height();
@@ -104,7 +118,7 @@ export default class Notification {
 
     /** Adds a progress bar, which will go from 100 to 0 in the specified seconds. */
     private addProgressBar(showTimeInSeconds: number): void {
-        const $progressBar: JQuery = this.$container.children(".masternotifications-progressbar");
+        const $progressBar: JQuery = this.$container.children(".masternotifications-notification-progressbar");
         $progressBar[0].style.animationDuration = `${showTimeInSeconds}s`;
         $progressBar.addClass("masternotifications-progress");
     }

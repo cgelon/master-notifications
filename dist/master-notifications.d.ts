@@ -7,8 +7,9 @@ declare namespace MasterNotifications {
         /**
          * Constructs a NotificationController. All notifications will appear in the specified $container.
          * @param container The container that all notifications will be displayed within.
+         * @param options Options to control functionality within NotificationController.
          */
-        constructor(container: Element);
+        constructor(container: Element, options?: INotificationControllerOptions);
         /**
          * Displays a success notification.
          * @param message The message that will be displayed within the success notification.
@@ -47,5 +48,15 @@ declare namespace MasterNotifications {
         showTime?: number;
         /** If true, a close button will be displayed on the upper right of the notification. If false, clicking on the notification will close it. */
         showCloseButton?: boolean;
+    }
+
+    /** Options for modifying the NotificationController. */
+    interface INotificationControllerOptions {
+        /** 
+         * Key code for the key to toggle the terminal. 
+         * Defaults to ` (192). 
+         * Set to -1 to remove key toggle functionality.  
+         */
+        terminalToggleKeyCode?: number;
     }
 }
