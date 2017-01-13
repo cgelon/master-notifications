@@ -1,14 +1,45 @@
+import { INotificationControllerOptions } from "./INotificationControllerOptions";
 import { INotificationOptions } from "./INotificationOptions";
 import { NotificationType } from "./NotificationType";
 import Notification from "./Notification";
 import Terminal from "./Terminal"
+
+/** Default INotificationOptions for the different notification types. */
+class NotificationDefaults {
+    public static readonly SuccessOptions: INotificationOptions = {
+        showTime: 5,
+        showCloseButton: false
+    };
+    public static readonly InfoOptions: INotificationOptions = {
+        showTime: 8,
+        showCloseButton: false
+    };
+    public static readonly WarningOptions: INotificationOptions = {
+        showTime: 0,
+        showCloseButton: true
+    };
+    public static readonly ErrorOptions: INotificationOptions = {
+        showTime: 0,
+        showCloseButton: true
+    };
+}
+
+class KeyCode {
+    public static readonly Escape: number = 27;
+    public static readonly GraveAccent: number = 192;
+}
 
 /**
  * A NotificationController deals with creating any and all notifications.
  * These notifications will be displayed in the specified container.
  */
 export class NotificationController {
+    private static readonly DefaultOptions: INotificationControllerOptions = {
+        terminalToggleKeyCode: KeyCode.GraveAccent
+    };
+
     private readonly _$container: JQuery;
+    private readonly _options: INotificationControllerOptions;
     private readonly _$dismissAllButton: JQuery;
     private readonly _terminal: Terminal;
     private readonly _notifications: { [id: number]: Notification };
@@ -16,9 +47,11 @@ export class NotificationController {
     /**
      * Constructs a NotificationController. All notifications will appear in the specified $container.
      * @param container The container that all notifications will be displayed within.
+     * @param options Options to control functionality within NotificationController.
      */
-    constructor(container: Element) {
+    constructor(container: Element, options?: INotificationControllerOptions) {
         this._$container = $(container).addClass("masternotifications-controller-container");
+        this._options = { ...NotificationController.DefaultOptions, ...options };
         this._notifications = {};
 
         this._$container.on(Notification.NotificationRemovedEvent, ".masternotifications-notification", (event: JQueryEventObject) => {
@@ -42,6 +75,11 @@ export class NotificationController {
         $(window).on("keydown", (event: JQueryKeyEventObject) => {
             switch(event.keyCode) {
                 case KeyCode.Escape:
+                    if (this._terminal.isVisible) {
+                        this._terminal.close();
+                    }
+                    break;
+                case this._options.terminalToggleKeyCode:
                     this._terminal.toggle();
                     break;
                 default:
@@ -55,7 +93,7 @@ export class NotificationController {
      * @param options INotificationOptions to modify the notification.
      */
     public success(message: string, options?: INotificationOptions): void {
-        this.createNotification(message, "success", { ...Defaults.SuccessOptions, ...options });
+        this.createNotification(message, "success", { ...NotificationDefaults.SuccessOptions, ...options });
     }
 
     /**
@@ -64,7 +102,7 @@ export class NotificationController {
      * @param options INotificationOptions to modify the notification.
      */
     public info(message: string, options?: INotificationOptions): void {
-        this.createNotification(message, "info", { ...Defaults.InfoOptions, ...options });
+        this.createNotification(message, "info", { ...NotificationDefaults.InfoOptions, ...options });
     }
 
     /**
@@ -73,7 +111,7 @@ export class NotificationController {
      * @param options INotificationOptions to modify the notification.
      */
     public warning(message: string, options?: INotificationOptions): void {
-        this.createNotification(message, "warning", { ...Defaults.WarningOptions, ...options });
+        this.createNotification(message, "warning", { ...NotificationDefaults.WarningOptions, ...options });
     }
 
     /**
@@ -82,7 +120,7 @@ export class NotificationController {
      * @param options INotificationOptions to modify the notification.
      */
     public error(message: string, options?: INotificationOptions): void {
-        this.createNotification(message, "error", { ...Defaults.ErrorOptions, ...options });
+        this.createNotification(message, "error", { ...NotificationDefaults.ErrorOptions, ...options });
     }
 
     /**
@@ -110,28 +148,4 @@ export class NotificationController {
             this._$dismissAllButton.slideUp(100);
         }
     }
-}
-
-/** Default INotificationOptions for the different notification types. */
-class Defaults {
-    public static readonly SuccessOptions: INotificationOptions = {
-        showTime: 5,
-        showCloseButton: false
-    };
-    public static readonly InfoOptions: INotificationOptions = {
-        showTime: 8,
-        showCloseButton: false
-    };
-    public static readonly WarningOptions: INotificationOptions = {
-        showTime: 0,
-        showCloseButton: true
-    };
-    public static readonly ErrorOptions: INotificationOptions = {
-        showTime: 0,
-        showCloseButton: true
-    };
-}
-
-class KeyCode {
-    public static readonly Escape: number = 27;
 }
