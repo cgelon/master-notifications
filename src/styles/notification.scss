@@ -1,0 +1,88 @@
+@import "colors";
+
+.masternotifications-notification {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    padding: 10px 20px; /** 24px * 0.417em = 10px */
+    opacity: 0.8;
+    margin: 1px; /**0.042em; /** 24px * 0.0417em = 1px */
+    background-color: gray;
+    box-sizing: content-box;
+    text-align: center;
+    font-size: 24px;
+    line-height: normal;
+}
+
+.masternotifications-notification:hover {
+    opacity: 1;
+}
+
+.masternotifications-notification-progressbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px; /** 24px * 0.208em = 5px */
+    width: 100%;
+    background-color: black;
+    opacity: 0.3
+}
+
+.masternotifications-notification-close-button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    opacity: 0.3;
+}
+
+.masternotifications-notification-close-button:hover {
+    opacity: 1;
+}
+
+@keyframes masternotifications-timeProgress {
+    0% { width: 100% }
+    100% { width: 0% }
+}
+.masternotifications-progress {
+    animation-name: masternotifications-timeProgress;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes masternotifications-increaseFontSize {
+    0% { font-size: 0px; padding: 0px 0px; }
+    100% { font-size: 24px; padding: 10px 20px; }
+}
+.masternotifications-fontsize-increase {
+    animation: masternotifications-increaseFontSize 0.3s ease-out;
+}
+
+@keyframes masternotifications-decreaseFontSize {
+    0% { font-size: 24px; padding: 10px 20px; }
+    100% { font-size: 0px; padding: 0px 0px; }
+}
+.masternotifications-fontsize-decrease {
+    animation: masternotifications-decreaseFontSize 0.3s ease-out;
+}
+
+.masternotifications-notification-success {
+    @extend .masternotifications-notification;
+    background-color: $success;
+}
+
+.masternotifications-notification-info {
+    @extend .masternotifications-notification;
+    background-color: $info;
+}
+
+.masternotifications-notification-warning {
+    @extend .masternotifications-notification;
+    background-color: $warning;
+}
+
+.masternotifications-notification-error {
+    @extend .masternotifications-notification;
+    background-color: $error;
+}

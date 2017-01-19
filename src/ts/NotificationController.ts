@@ -1,8 +1,10 @@
-import { INotificationControllerOptions } from "./INotificationControllerOptions";
-import { INotificationOptions } from "./INotificationOptions";
-import { NotificationType } from "./NotificationType";
+import { INotificationControllerOptions } from "./interfaces/INotificationControllerOptions";
+import { INotificationOptions } from "./interfaces/INotificationOptions";
+import { NotificationType } from "./types/NotificationType";
 import Notification from "./Notification";
-import Terminal from "./Terminal"
+import Terminal from "./Terminal";
+import "../styles/z-index.scss";
+import "../styles/notification-controller.scss";
 
 /** Default INotificationOptions for the different notification types. */
 class NotificationDefaults {

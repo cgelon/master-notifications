@@ -1,0 +1,147 @@
+@import "colors";
+
+@mixin background-color-opacity($color, $opacity) {
+    background-color: rgba($color, $opacity);
+}
+
+.masternotifications-terminal-container {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.masternotifications-terminal {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 20px;
+}
+
+.masternotifications-terminal-filters {
+    display: flex;
+    width: 100%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.masternotifications-terminal-filter {
+    cursor: pointer;
+    margin: 5px;
+    flex-grow: 1;
+}
+
+.masternotifications-terminal-filter-success {
+    @include background-color-opacity($success, 1);
+    &:hover {
+        @include background-color-opacity($success, 0.8);
+    }
+}
+
+.masternotifications-terminal-filter-info {
+    @include background-color-opacity($info, 1);
+    &:hover {
+        @include background-color-opacity($info, 0.8);
+    }
+}
+
+.masternotifications-terminal-filter-warning {
+    @include background-color-opacity($warning, 1);
+    &:hover {
+        @include background-color-opacity($warning, 0.8);
+    }
+}
+
+.masternotifications-terminal-filter-error {
+    @include background-color-opacity($error, 1);
+    &:hover {
+        @include background-color-opacity($error, 0.8);
+    }
+}
+
+.masternotifications-terminal-filter-notselected {
+    background-color: initial;
+}
+
+.masternotifications-terminal-filter-success.masternotifications-terminal-filter-notselected:hover {
+    @include background-color-opacity($success, 0.3);
+}
+
+.masternotifications-terminal-filter-info.masternotifications-terminal-filter-notselected:hover {
+    @include background-color-opacity($info, 0.3);
+}
+
+.masternotifications-terminal-filter-warning.masternotifications-terminal-filter-notselected:hover {
+    @include background-color-opacity($warning, 0.3);
+}
+
+.masternotifications-terminal-filter-error.masternotifications-terminal-filter-notselected:hover {
+    @include background-color-opacity($error, 0.3);
+}
+
+.masternotifications-terminal-messages {
+    overflow: auto;
+}
+
+.masternotifications-terminal-notification-container {
+    display: flex;
+    align-items: center;
+}
+
+.masternotifications-terminal-notification {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    padding: 10px 20px; /** 24px * 0.417em = 10px */
+    opacity: 0.8;
+    margin: 1px; /**0.042em; /** 24px * 0.0417em = 1px */
+    background-color: gray;
+    box-sizing: content-box;
+    text-align: center;
+    font-size: 24px;
+    line-height: normal;
+}
+
+.masternotifications-terminal-notification-success {
+    @extend .masternotifications-terminal-notification;
+    background-color: $success;
+}
+
+.masternotifications-terminal-notification-info {
+    @extend .masternotifications-terminal-notification;
+    background-color: $info;
+}
+
+.masternotifications-terminal-notification-warning {
+    @extend .masternotifications-terminal-notification;
+    background-color: $warning;
+}
+
+.masternotifications-terminal-notification-error {
+    @extend .masternotifications-terminal-notification;
+    background-color: $error;
+}
+
+.masternotifications-terminal-notification-timestamp {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.masternotifications-terminal-notification {
+    margin: 8px 0;
+    cursor: default;
+    flex-grow: 1;
+    opacity: 1;
+}

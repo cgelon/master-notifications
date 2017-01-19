@@ -1,5 +1,6 @@
-import { INotificationOptions } from "./INotificationOptions";
-import { NotificationType } from "./NotificationType";
+import { INotificationOptions } from "./interfaces/INotificationOptions";
+import { NotificationType } from "./types/NotificationType";
+import "../styles/notification.scss";
 
 /**
  * A notification contains logic on how to create itself, appear, and disappear.
@@ -27,7 +28,7 @@ export default class Notification {
         this._type = type;
         this._options = options;
 
-        this._$container = $(`<div class="masternotifications-notification masternotifications-${type}" data-id="${this._id}"></div>`).hide();
+        this._$container = $(`<div class="masternotifications-notification masternotifications-notification-${type}" data-id="${this._id}"></div>`).hide();
 
         if (options.showCloseButton) {
             this._$container.append(`<div class="masternotifications-notification-close-button">&#10006;</div>`);

@@ -1,6 +1,7 @@
-import { NotificationType } from "./NotificationType";
+import { NotificationType } from "./types/NotificationType";
 import Notification from "./Notification";
 import * as Moment from "moment";
+import "../styles/terminal.scss";
 
 export default class Terminal {
     private static readonly notSelectedClass: string = "masternotifications-terminal-filter-notselected";
@@ -31,7 +32,7 @@ export default class Terminal {
             const $filter: JQuery = $(event.currentTarget);
             $filter.toggleClass(Terminal.notSelectedClass);
             const type: string = $filter.data("type");
-            const notificationsOfType: JQuery = this._$notifications.find(`.masternotifications-${type}`).parent();
+            const notificationsOfType: JQuery = this._$notifications.find(`.masternotifications-terminal-notification-${type}`).parent();
             if ($filter.hasClass(Terminal.notSelectedClass)) {
                 notificationsOfType.hide();
             } else {
@@ -47,7 +48,7 @@ export default class Terminal {
     public addNotification(notification: Notification): void {
         const $terminalNotificationContainer: JQuery = $(`<div class="masternotifications-terminal-notification-container"></div>`);
         const $terminalNotificationTimestamp: JQuery = $(`<div class="masternotifications-terminal-notification-timestamp">${Moment().format("LTS")}</div>`);
-        const $terminalNotification: JQuery = $(`<div class="masternotifications-terminal-notification masternotifications-${notification.type}">${notification.message}</div>`);
+        const $terminalNotification: JQuery = $(`<div class="masternotifications-terminal-notification-${notification.type}">${notification.message}</div>`);
         $terminalNotificationContainer.append($terminalNotificationTimestamp).append($terminalNotification);
         this._$notifications.prepend($terminalNotificationContainer);
         if (this.getFilterOfType(notification.type).hasClass(Terminal.notSelectedClass)) {
