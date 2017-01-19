@@ -1,6 +1,7 @@
-import { NotificationType } from "./NotificationType";
+import { NotificationType } from "./types/NotificationType";
 import Notification from "./Notification";
 import * as Moment from "moment";
+import "../styles/terminal.scss";
 
 export default class Terminal {
     private static readonly notSelectedClass: string = "masternotifications-terminal-filter-notselected";

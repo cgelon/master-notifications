@@ -1,5 +1,6 @@
-import { INotificationOptions } from "./INotificationOptions";
-import { NotificationType } from "./NotificationType";
+import { INotificationOptions } from "./interfaces/INotificationOptions";
+import { NotificationType } from "./types/NotificationType";
+import "../styles/notification.scss";
 
 /**
  * A notification contains logic on how to create itself, appear, and disappear.

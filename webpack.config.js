@@ -1,4 +1,5 @@
 var webpack = require("webpack");
+var extractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   externals: ["jquery", "moment"],
@@ -13,11 +14,13 @@ module.exports = {
     extensions: ["", ".ts"]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new extractTextPlugin("./dist/master-notifications.css")
   ],
   module: {
     loaders: [
-      { test: /\.ts$/, loader: "ts-loader" }
+      { test: /\.ts$/, loader: "ts-loader" },
+      { test: /\.scss$/, loader: extractTextPlugin.extract("style-loader", "css-loader", "sass-loader") }
     ]
   }
 }
