@@ -20,7 +20,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.ts$/, loader: "ts-loader" },
-      { test: /\.scss$/, loader: extractTextPlugin.extract("style-loader", "css-loader", "sass-loader") }
+      { test: /\.scss$/, loader: extractTextPlugin.extract(["css-loader", "sass-loader"]) }
     ]
   }
 }

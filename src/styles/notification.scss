@@ -1,3 +1,5 @@
+@import "colors";
+
 .masternotifications-notification {
     position: relative;
     cursor: pointer;
@@ -39,47 +41,48 @@
     opacity: 1;
 }
 
+@keyframes masternotifications-timeProgress {
+    0% { width: 100% }
+    100% { width: 0% }
+}
 .masternotifications-progress {
     animation-name: masternotifications-timeProgress;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
 
-.masternotifications-fontsize-increase {
-    animation: masternotifications-increaseFontSize 0.3s ease-out;
-}
-
-.masternotifications-fontsize-decrease {
-    animation: masternotifications-decreaseFontSize 0.3s ease-out;
-}
-
-.masternotifications-success {
-    background-color: #4CAF50;
-}
-
-.masternotifications-info {
-    background-color: #2980b9;
-}
-
-.masternotifications-warning {
-    background-color: #f39c12;
-}
-
-.masternotifications-error {
-    background-color: #c0392b;
-}
-
-@keyframes masternotifications-timeProgress {
-    0% { width: 100% }
-    100% { width: 0% }
-}
-
 @keyframes masternotifications-increaseFontSize {
     0% { font-size: 0px; padding: 0px 0px; }
     100% { font-size: 24px; padding: 10px 20px; }
+}
+.masternotifications-fontsize-increase {
+    animation: masternotifications-increaseFontSize 0.3s ease-out;
 }
 
 @keyframes masternotifications-decreaseFontSize {
     0% { font-size: 24px; padding: 10px 20px; }
     100% { font-size: 0px; padding: 0px 0px; }
+}
+.masternotifications-fontsize-decrease {
+    animation: masternotifications-decreaseFontSize 0.3s ease-out;
+}
+
+.masternotifications-notification-success {
+    @extend .masternotifications-notification;
+    background-color: $success;
+}
+
+.masternotifications-notification-info {
+    @extend .masternotifications-notification;
+    background-color: $info;
+}
+
+.masternotifications-notification-warning {
+    @extend .masternotifications-notification;
+    background-color: $warning;
+}
+
+.masternotifications-notification-error {
+    @extend .masternotifications-notification;
+    background-color: $error;
 }
