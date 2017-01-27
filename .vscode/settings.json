@@ -10,4 +10,6 @@
         "**/*.css.map": true,
         "**/node_modules": true
     }
+,
+"vsicons.presets.angular": false
 }
