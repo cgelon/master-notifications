@@ -1,35 +1,12 @@
 import { INotificationControllerOptions } from "./interfaces/INotificationControllerOptions";
 import { INotificationOptions } from "./interfaces/INotificationOptions";
 import { NotificationType } from "./types/NotificationType";
+import KeyCode from "./util/KeyCode";
+import NotificationDefaults from "./NotificationDefaults";
 import Notification from "./Notification";
 import Terminal from "./Terminal";
 import "../styles/z-index.scss";
 import "../styles/notification-controller.scss";
-
-/** Default INotificationOptions for the different notification types. */
-class NotificationDefaults {
-    public static readonly SuccessOptions: INotificationOptions = {
-        showTime: 5,
-        showCloseButton: false
-    };
-    public static readonly InfoOptions: INotificationOptions = {
-        showTime: 8,
-        showCloseButton: false
-    };
-    public static readonly WarningOptions: INotificationOptions = {
-        showTime: 0,
-        showCloseButton: true
-    };
-    public static readonly ErrorOptions: INotificationOptions = {
-        showTime: 0,
-        showCloseButton: true
-    };
-}
-
-class KeyCode {
-    public static readonly Escape: number = 27;
-    public static readonly GraveAccent: number = 192;
-}
 
 /**
  * A NotificationController deals with creating any and all notifications.
