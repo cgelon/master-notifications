@@ -56,7 +56,7 @@ For additional options, pass in *INotificationOptions* when creating a notificat
 notificationController.success("Notification with options...", options);
 ```
 
-####INotificationOptions
+#### INotificationOptions
 
 Option|Type|Success Default|Info Default|Warning Default|Error Default|Description
 ---|---|:---:|:---:|:---:|:---:|---
