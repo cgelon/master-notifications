@@ -11,7 +11,7 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: ["", ".ts"]
+    extensions: [".ts", ".js"]
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
