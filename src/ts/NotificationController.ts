@@ -51,7 +51,7 @@ export class NotificationController {
         this._$container.append($terminal);
         this._terminal = new Terminal($terminal);
 
-        $(window).on("keydown", (event: JQueryKeyEventObject) => {
+        $(window).on("keydown", (event: JQueryEventObject) => {
             switch(event.keyCode) {
                 case KeyCode.Escape:
                     if (this._terminal.isVisible) {
