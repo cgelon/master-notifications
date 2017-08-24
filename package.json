@@ -60,7 +60,7 @@
   "scripts": {
     "build": "webpack -p --config webpack/prod.config.js",
     "start": "webpack-dev-server --inline --hot --open --config webpack/dev.config.js",
-    "test": "mocha-webpack --opts mocha/mocha-webpack.opts",
-    "test-watch": "mocha-webpack --opts mocha/mocha-webpack.opts --watch"
+    "test": "mocha-webpack --opts test/mocha-webpack.opts",
+    "test-watch": "mocha-webpack --opts test/mocha-webpack.opts --watch"
   }
 }
