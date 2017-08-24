@@ -20,9 +20,18 @@
     "moment": "^2.18.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.4",
     "@types/jquery": "^3.2.0",
+    "@types/mocha": "^2.2.42",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.1",
     "css-loader": "^0.28.5",
     "extract-text-webpack-plugin": "^3.0.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^3.5.0",
+    "mocha-typescript": "^1.1.7",
+    "mocha-webpack": "^1.0.0-rc.1",
     "node-sass": "^4.3.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
@@ -32,8 +41,26 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0"
   },
+  "devDependenciesComments": {
+    "babel-register": "Used for mocha in combination with ignore-styles to ignore sass files in tests.",
+    "chai": "Defines asserts to use with mocha.",
+    "css-loader": "Webpack loader for css files.",
+    "extract-text-webpack-plugin": "Minifier for webpack.",
+    "ignore-styles": "Used with babel-register in mocha to ignore sass files in tests.",
+    "jsdom-global": "A headless browser for jQuery to use in mocha.",
+    "mocha": "Testing framework for javascript.",
+    "mocha-typescript": "Decorators for mocha tests.",
+    "mocha-webpack": "Webpack compiler for mocha tests.",
+    "sass-loader": "Webpack loader for sass files.",
+    "style-loader": "Webpack loader for css files.",
+    "ts-loader": "Webpack loader for typescript.",
+    "webpack": "Compiler that distills the entire project into single library files, all minified and uglified.",
+    "webpack-dev-server": "Node.js server that constantly compiles and refreshes the testing page."
+  },
   "scripts": {
     "build": "webpack -p --config webpack/prod.config.js",
-    "server": "webpack-dev-server --inline --hot --open --config webpack/dev.config.js"
+    "start": "webpack-dev-server --inline --hot --open --config webpack/dev.config.js",
+    "test": "mocha-webpack --opts mocha/mocha-webpack.opts",
+    "test-watch": "mocha-webpack --opts mocha/mocha-webpack.opts --watch"
   }
 }
