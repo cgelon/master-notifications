@@ -8,10 +8,12 @@
         "lib": ["es2016", "dom"], // TODO (8/23/17): Remove this line when moving to es6.
         "typeRoots": [
             "node_modules/@types"
-        ]
+        ],
+        "experimentalDecorators": true // For the decorators in Mocha tests.
     },
     "compileOnSave": true,
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "test/*"
     ]
 }
