@@ -1,4 +1,2 @@
 --webpack-config webpack/test.config.js
---require babel-register
---require ignore-styles
 --require jsdom-global/register

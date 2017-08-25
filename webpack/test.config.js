@@ -6,17 +6,16 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".js"]
   },
-  devtool: "#inline-cheap-module-source-map",
   module: {
     loaders: [
       { test: /\.ts$/, loader: "ts-loader" },
-      { test: /\.scss$/, loaders: ['css-loader/locals?modules', 'sass-loader'] },
-      { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },     
+      { test: /\.scss$/, loaders: ['css-loader/locals?modules', 'sass-loader'] }    
     ]
   },
   plugins: [
     new webpack.ProvidePlugin({
-        $: "jQuery"
+        $: "jQuery",
+        jQuery: "jQuery"
     })
   ]
 }
