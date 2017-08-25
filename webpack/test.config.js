@@ -10,7 +10,8 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.ts$/, loader: "ts-loader" },
-      { test: /\.scss$/, loaders: ['css-loader/locals?modules', 'sass-loader'] }
+      { test: /\.scss$/, loaders: ['css-loader/locals?modules', 'sass-loader'] },
+      { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },     
     ]
   },
   plugins: [
