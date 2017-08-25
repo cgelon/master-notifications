@@ -1,4 +1,3 @@
-import "jquery";
 import { INotificationOptions } from "./interfaces/INotificationOptions";
 import { NotificationType } from "./types/NotificationType";
 import "../styles/notification.scss";
