@@ -1,5 +1,6 @@
 import { suite, test, slow, timeout } from "mocha-typescript";
 import { expect } from "chai";
+import $ = require("jquery");
 import Notification from "../src/ts/Notification";
 
 @suite(timeout(3000), slow(1000))
