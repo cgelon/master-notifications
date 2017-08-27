@@ -1,8 +1,9 @@
+const nodeExternals = require("webpack-node-externals");
 const webpack = require("webpack");
 
 module.exports = {
   target: "node",
-  externals: ["jquery", "moment"],
+  externals: [nodeExternals()],
   resolve: {
     extensions: [".ts", ".js"]
   },
