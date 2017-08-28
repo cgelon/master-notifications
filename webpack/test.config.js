@@ -2,7 +2,6 @@ const webpack = require("webpack");
 
 module.exports = {
   target: "node",
-  externals: ["jquery", "moment"],
   resolve: {
     extensions: [".ts", ".js"]
   },
@@ -14,8 +13,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-        $: "jQuery",
-        jQuery: "jQuery"
+        $: "jquery",
+        jQuery: "jquery"
     })
   ]
 }
