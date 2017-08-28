@@ -3,6 +3,7 @@ import Notification from "./Notification";
 import * as Moment from "moment";
 import "../styles/terminal.scss";
 
+// TODO (cgelon 8/27/17): Add comments!
 export default class Terminal {
     private static readonly notSelectedClass: string = "masternotifications-terminal-filter-notselected";
 

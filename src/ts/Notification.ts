@@ -42,7 +42,7 @@ export default class Notification {
         }
 
         this._$container.append(`<div class="masternotifications-notification-message">${message}</div>`);
-        if (options.showTime > 0) {
+        if (options.showTimeInSeconds > 0) {
             this._$container.append(`<div class="masternotifications-notification-progressbar"></div>`);
         }
 
@@ -56,8 +56,8 @@ export default class Notification {
                 case "masternotifications-increaseFontSize":
                     this.$container.removeClass("masternotifications-fontsize-increase")
                     this.maxHeight = "";
-                    if (this._options.showTime > 0) {
-                        this.addProgressBar(this._options.showTime);
+                    if (this._options.showTimeInSeconds > 0) {
+                        this.addProgressBar(this._options.showTimeInSeconds);
                     }
                     break;
                 // Once the notification has shrunk.
